@@ -78,6 +78,9 @@ require_once('protect.php');
 					fwrite($f, $city . " (" . $country . ") " . $weather . ", " . $temp . "°C, " . $wind . "m/s. " . $note . "\n");
 					fclose($f);
 				}
+				echo "<script>";
+				echo "UIkit.notification({message: 'Note saved.'});";
+				echo "</script";
 			}
 			?>
 			<form method='post' action=''>

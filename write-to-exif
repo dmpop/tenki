@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Author: Dmitri Popov, dmpop@linux.com
+# License: GPLv3 https://www.gnu.org/licenses/gpl-3.0.txt
+
+copyright="Dmitri Popov, tokyoma.de"
+ext="*.jpeg"
+dir="$HOME/microdiary/"
+
+for file in "$ext"; do
+    date=$(exiftool -DateTimeOriginal -d %Y-%m-%d "$file" | cut -d":" -f2 | tr -d " ")
+    wf="$dir"$date".txt"
+    if [ -f $wf ]; then
+	weather=$(<$wf)
+    else
+	weather="Weather not available"
+    fi
+    camera=$(exiftool -Model "$file" | cut -d":" -f2 | tr -d " ")
+    lens=$(exiftool -LensID "$file" | cut -d":" -f2)
+    exiftool -overwrite_original -copyright="$copyright" -comment="$camera $lens $weather" "$file"
+done
+notify-send "All done. Bye!"

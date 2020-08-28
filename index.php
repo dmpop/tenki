@@ -19,8 +19,7 @@ require_once('protect.php');
 <body>
 	<div class="uk-container uk-margin-small-top">
 		<div class="uk-card uk-card-primary uk-card-body">
-			<h1><?php echo $title ?></h1>
-			<hr>
+			<h1 class="uk-heading-line uk-text-center"><span><?php echo $title ?></span></h1>
 			<button class="uk-button uk-button-default uk-margin-top" onclick="getLocation()">Get coordinates</button>
 			<p id="geolocation"></p>
 			<script>
@@ -71,37 +70,31 @@ require_once('protect.php');
 					$temp = $data['data']['0']['temp'];
 					$weather = $data['data']['0']['weather']['description'];
 					$wind = floor($data['data']['0']['wind_spd'] * 100) / 100;
-					echo "Temperature: " . $temp . "°C<br>";
-					echo "Current conditions: " . $weather . "<br>";
-					echo "Wind speed: " . $wind . "m/s<br>";
 					$f = fopen("data/" . $date . ".txt", "a");
 					fwrite($f, $city . " (" . $country . ") " . $weather . ", " . $temp . "°C, " . $wind . "m/s. " . $note . "\n");
 					fclose($f);
 				}
 				echo "<script>";
-				echo "UIkit.notification({message: 'Note saved.'});";
-				echo "</script";
+				echo "window.location.replace('.');";
+				echo "</script>";
 			}
 			?>
 			<form method='post' action=''>
 				<label for='note'>Note:</label>
 				<textarea class="uk-textarea" name="note"></textarea>
-				<button class="uk-button uk-button-default uk-margin-top" type='submit' role='button' name='save'>Save</button>
-				<button class="uk-button uk-button-primary uk-margin-top" type='submit' role='button' name='view'>View</button>
+				<button class="uk-button uk-button-primary uk-margin-top" type='submit' role='button' name='save'>Save</button>
 			</form>
 		</div>
 		<?php
-		if (isset($_POST['view'])) {
-			$flist = array_reverse(glob('data/*.txt'));
-			foreach (array_slice($flist, 0, $inum) as $f) {
-				$fname = basename($f, ".txt");
-				echo "<div class='uk-container uk-margin-small-top'>";
-				echo "<div class='uk-card uk-card-default uk-card-body'>";
-				echo "<h2>" . $fname . "</h2>";
-				echo file_get_contents($f, true);
-				echo "<br>";
-				echo "</div>";
-			}
+		$flist = array_reverse(glob('data/*.txt'));
+		foreach (array_slice($flist, 0, $inum) as $f) {
+			$fname = basename($f, ".txt");
+			echo "<div class='uk-container uk-margin-small-top'>";
+			echo "<div class='uk-card uk-card-default uk-card-body'>";
+			echo "<h2>" . $fname . "</h2>";
+			echo file_get_contents($f, true);
+			echo "<br>";
+			echo "</div>";
 		}
 		?>
 	</div>

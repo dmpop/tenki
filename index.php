@@ -13,20 +13,21 @@ require_once('protect.php');
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="classless.css" />
 	<style>
-        textarea {
-            font-size: 15px;
-            width: 100%;
-            height: 15em;
-            line-height: 1.9;
-            margin-top: 1em;
-            margin-bottom: 1em;
-        }
-    </style>
+		textarea {
+			font-size: 15px;
+			width: 100%;
+			height: 15em;
+			line-height: 1.9;
+			margin-top: 1em;
+			margin-bottom: 1em;
+		}
+	</style>
 </head>
 
 <body>
 	<div class="text-center">
-		<h1 class="text-center" style="letter-spacing: 3px; margin-top: 0em;"><?php echo $title ?></h1>
+		<img style="display: inline; height: 2em; vertical-align: middle;" src="favicon.png" alt="logo" />
+		<h1 class="text-center" style="display: inline; margin-left: 0.19em; vertical-align: middle; letter-spacing: 3px; margin-top: 0em;"><?php echo $title ?></h1>
 		<hr style="margin-bottom: 2em;">
 		<button onclick="getLocation()">Get coordinates</button>
 		<p id="geolocation"></p>
@@ -104,7 +105,7 @@ require_once('protect.php');
 		}
 		?>
 		<hr style="margin-top: 2em;">
-        <p>This is <a href="https://gitlab.com/dmpop/tenki">Tenki</a></p>
+		<p>This is <a href="https://gitlab.com/dmpop/tenki">Tenki</a></p>
 	</div>
 </body>
 

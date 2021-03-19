@@ -88,10 +88,11 @@ require_once('protect.php');
 			echo "</script>";
 		}
 		?>
-		<form method='post' action=''>
+		<form method='POST' action=''>
 			<label for='note'>Note:</label><br />
 			<textarea name="note"></textarea><br />
-			<button type='submit' role='button' name='save'>Save</button>
+			<button type='submit' name='save'>Save</button>
+			<button type="submit" name="download">Download</button>
 		</form>
 		<?php
 		$flist = array_reverse(glob('data/*.txt'));
@@ -104,6 +105,33 @@ require_once('protect.php');
 			echo "</div>";
 		}
 		?>
+
+		<?php
+		if (isset($_POST["download"])) {
+			$dir = 'data';
+			$archive = time() . '-download.zip';
+			$zip = new ZipArchive;
+			$zip->open($archive, ZipArchive::CREATE);
+			$files = scandir($dir);
+			unset($files[0], $files[1]);
+			foreach ($files as $file) {
+				$zip->addFile($dir . '/' . $file);
+			}
+			$zip->close();
+			header($_SERVER['SERVER_PROTOCOL'] . ' 200 OK');
+			header('Content-Type: application/zip');
+			header("Content-Transfer-Encoding: Binary");
+			header('Content-disposition: attachment; filename=' . $archive);
+			header('Content-Length: ' . filesize($archive));
+			while (ob_get_level()) {
+				ob_end_clean();
+			}
+			readfile($archive);
+			unlink($archive);
+			ob_start();
+		}
+		?>
+
 		<hr style="margin-top: 2em;">
 		<p>This is <a href="https://github.com/dmpop/tenki">Tenki</a></p>
 	</div>

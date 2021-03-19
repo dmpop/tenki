@@ -5,7 +5,7 @@
 
 copyright="Dmitri Popov, tokyoma.de"
 ext="*.jpeg"
-dir="$HOME/microdiary/"
+dir="$HOME/tenki/"
 
 for file in "$ext"; do
     date=$(exiftool -DateTimeOriginal -d %Y-%m-%d "$file" | cut -d":" -f2 | tr -d " ")
@@ -19,4 +19,4 @@ for file in "$ext"; do
     lens=$(exiftool -LensID "$file" | cut -d":" -f2)
     exiftool -overwrite_original -copyright="$copyright" -comment="$camera $lens $weather" "$file"
 done
-notify-send "All done. Bye!"
+echo "All done. Bye!"

@@ -105,7 +105,7 @@ require_once('protect.php');
 		}
 		?>
 		<hr style="margin-top: 2em;">
-		<p>This is <a href="https://gitlab.com/dmpop/tenki">Tenki</a></p>
+		<p>This is <a href="https://github.com/dmpop/tenki">Tenki</a></p>
 	</div>
 </body>
 

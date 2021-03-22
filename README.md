@@ -4,6 +4,10 @@ Tenki a simple PHP application to log current weather conditions and notes.
 
 The accompanying shell script can be used to read the date of a specified photo then find a matching text file, and write its contents into the _Comment_ field of the photo.
 
+The [Linux Photography](https://gumroad.com/l/linux-photography) book provides detailed information on using Mejiro. Get your copy at [Google Play Store](https://play.google.com/store/books/details/Dmitri_Popov_Linux_Photography?id=cO70CwAAQBAJ) or [Gumroad](https://gumroad.com/l/linux-photography).
+
+<img src="https://i.imgur.com/qP9Z9mQ.jpg" title="Linux Photography book" width="200"/>
+
 ## Author
 
 Dmitri Popov [dmpop@linux.com](mailto:dmpop@linux.com)

@@ -18,7 +18,7 @@ if (isset($_POST['password']) && $_POST['password'] == $passwd) {
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en"  data-theme="<?php echo $theme ?>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title><?php echo $title ?></title>
 <link rel="shortcut icon" href="favicon.png" />

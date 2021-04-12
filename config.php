@@ -1,6 +1,8 @@
 <?php
 // Title
 $title = "Tenki";
+// Theme (light dark, sepia)
+$theme = "dark";
 // Number of entries to display
 $inum = 7;
 //Enable password protection

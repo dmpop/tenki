@@ -2,7 +2,7 @@
 include('config.php');
 require_once('protect.php');
 ?>
-<html lang="en">
+<html lang="en"  data-theme="<?php echo $theme ?>">
 <!-- Author: Dmitri Popov, dmpop@linux.com
 	 License: GPLv3 https://www.gnu.org/licenses/gpl-3.0.txt -->
 

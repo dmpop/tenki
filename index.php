@@ -71,16 +71,16 @@ require_once('protect.php');
 			} else {
 				$lat = $_COOKIE['posLat'];
 				$lon = $_COOKIE['posLon'];
-				$request = "https://api.weatherbit.io/v2.0/current?lat=" . $lat . "&lon=" . $lon . "&key=" . $weatherbit_api_key;
+				$request = "https://api.openweathermap.org/data/2.5/weather?lat=" . $lat . "&lon=" . $lon . "&appid=" . $api_key . "&units=metric&cnt=7&lang=en&units=metric&cnt=7";
 				$response = file_get_contents($request);
 				$data = json_decode($response, true);
-				$city = $data['data']['0']['city_name'];
-				$country = $data['data']['0']['country_code'];
-				$temp = $data['data']['0']['temp'];
-				$weather = $data['data']['0']['weather']['description'];
-				$wind = floor($data['data']['0']['wind_spd'] * 100) / 100;
+				$city = $data['name'];
+				$country = $data['sys']['country'];
+				$temp = $data['main']['temp'];
+				$weather = $data['weather'][0]['description'];
+				$wind = $data['wind']['speed'];
 				$f = fopen("data/" . $date . ".txt", "a");
-				fwrite($f, $city . " (" . $country . ") " . $weather . ", " . $temp . "°C, " . $wind . "m/s. " . $note . "\n");
+				fwrite($f, $city . " (" . $country . "), " . ucfirst(strtolower($weather)) . ", " . $temp . "°C, " . $wind . "m/s. " . $note . "\n");
 				fclose($f);
 			}
 			echo "<script>";

@@ -133,7 +133,7 @@ require_once('protect.php');
 		?>
 
 		<hr style="margin-top: 2em;">
-		<p>This is <a href="https://github.com/dmpop/tenki">Tenki</a></p>
+		<p style="margin-right: 0.5em;"><?php echo $footer; ?>
 	</div>
 </body>
 

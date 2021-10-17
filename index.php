@@ -28,7 +28,7 @@ require_once('protect.php');
 	<div class="text-center">
 		<img style="display: inline; height: 2em; vertical-align: middle;" src="favicon.png" alt="logo" />
 		<h1 class="text-center" style="display: inline; margin-left: 0.19em; vertical-align: middle; letter-spacing: 3px; margin-top: 0em;"><?php echo $title ?></h1>
-		<hr style="margin-bottom: 2em;">
+		<hr style="margin-bottom: 1em;">
 		<p id="geolocation"></p>
 		<script>
 			window.onload = getLocation();
@@ -43,8 +43,8 @@ require_once('protect.php');
 			}
 
 			function showPosition(position) {
-				x.innerHTML = "<div style='margin: 0 auto; border: 1px solid gray; border-radius: 5px; width: 17em'>Lat: " + position.coords.latitude +
-					" Lon: " + position.coords.longitude + "</div>";
+				x.innerHTML = "<div style='margin: 0 auto; margin-bottom: 1em;'><span style='color: yellow;'>" + position.coords.latitude +
+					", " + position.coords.longitude + "</span> <a href='http://www.openstreetmap.org/index.html?mlat=" + position.coords.latitude+ "&mlon="+ position.coords.longitude + "&zoom=18' target='_blank'>OSM</a></div>";
 				document.cookie = "posLat = ; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 				document.cookie = "posLon = ; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 				document.cookie = "posLat = " + position.coords.latitude;
@@ -89,7 +89,7 @@ require_once('protect.php');
 		}
 		?>
 		<form method='POST' action=''>
-			<label for='note'>Note:</label><br />
+			<label for='note'>Write a note here:</label><br />
 			<textarea name="note"></textarea><br />
 			<button type='submit' name='save'>Save</button>
 			<button type="submit" name="download">Download</button>

@@ -43,8 +43,7 @@ require_once('protect.php');
 			}
 
 			function showPosition(position) {
-				x.innerHTML = "<div style='margin: 0 auto; margin-bottom: 1em;'><span style='color: yellow;'>" + position.coords.latitude +
-					", " + position.coords.longitude + "</span> <a href='http://www.openstreetmap.org/index.html?mlat=" + position.coords.latitude+ "&mlon="+ position.coords.longitude + "&zoom=18' target='_blank'>OSM</a></div>";
+				x.innerHTML = "<div style='margin: 0 auto; margin-top: 2em; margin-bottom: 1em;'><a href='geo:" + position.coords.latitude + "," + position.coords.longitude + "'>" + position.coords.latitude + ", " + position.coords.longitude + "</a></div>";
 				document.cookie = "posLat = ; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 				document.cookie = "posLon = ; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 				document.cookie = "posLat = " + position.coords.latitude;

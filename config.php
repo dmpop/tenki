@@ -9,6 +9,8 @@ $inum = 7;
 $protect = true;
 // Password
 $passwd = 'monkey';
+// Timezone
+$tz = 'Europe/Berlin';
 // Footer
 $footer = "I really 🧡 <a href='https://www.paypal.com/paypalme/dmpop'>coffee</a>";
 // Openweathermap API key

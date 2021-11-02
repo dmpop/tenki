@@ -32,7 +32,7 @@ require_once('protect.php');
 			window.history.replaceState(null, null, window.location.href);
 		}
 	</script>
-	<div class="text-center">
+	<div class="card text-center">
 		<img style="display: inline; height: 2em; vertical-align: middle;" src="favicon.png" alt="logo" />
 		<h1 class="text-center" style="display: inline; margin-left: 0.19em; vertical-align: middle; letter-spacing: 3px; margin-top: 0em;"><?php echo $title ?></h1>
 		<hr style="margin-bottom: 1em;">
@@ -121,11 +121,15 @@ require_once('protect.php');
 		<form method='POST' action=''>
 			<label for='note'>Note (or waypoint description):</label><br />
 			<textarea name="note"></textarea><br />
-			<div style="margin-bottom: 2em;"><input type="checkbox" name="waypoint" value="wpt"> Save waypoint</div>
+			<div style="margin-bottom: 1em;"><input type="checkbox" name="waypoint" value="wpt"> Save waypoint</div>
 			<button type='submit' name='save'>Save</button>
 			<button onClick="window.location.reload();">Refresh</button>
 			<button type="submit" name="download">Download</button>
 		</form>
+	</div>
+	<div class="card text-center" style="margin-top: 2em;">
+		<h3 style="margin-top: 0em;">Previous <?php echo $inum ?> days</h3>
+		<hr>
 		<?php
 		$flist = array_reverse(glob('data/*.txt'));
 		foreach (array_slice($flist, 0, $inum) as $f) {
@@ -137,9 +141,11 @@ require_once('protect.php');
 			echo "</div>";
 		}
 		?>
+	</div>
 
-		<hr style="margin-top: 2em;">
-		<h2 class="text-left">Waypoints</h2>
+	<div class="card text-center" style="margin-top: 2em;">
+		<h3 style="margin-top: 0em;">Waypoints</h3>
+		<hr style="margin-bottom: 2em;">
 		<table>
 			<?php
 			$row = 1;
@@ -176,36 +182,37 @@ require_once('protect.php');
 			?>
 			</tbody>
 		</table>
-
-		<?php
-		if (isset($_POST["download"])) {
-			$dir = 'data';
-			$archive = time() . '-download.zip';
-			$zip = new ZipArchive;
-			$zip->open($archive, ZipArchive::CREATE);
-			$files = scandir($dir);
-			unset($files[0], $files[1]);
-			foreach ($files as $file) {
-				$zip->addFile($dir . '/' . $file);
-			}
-			$zip->close();
-			header($_SERVER['SERVER_PROTOCOL'] . ' 200 OK');
-			header('Content-Type: application/zip');
-			header("Content-Transfer-Encoding: Binary");
-			header('Content-disposition: attachment; filename=' . $archive);
-			header('Content-Length: ' . filesize($archive));
-			while (ob_get_level()) {
-				ob_end_clean();
-			}
-			readfile($archive);
-			unlink($archive);
-			ob_start();
-		}
-		?>
-
-		<hr style="margin-top: 2em;">
-		<p style="margin-right: 0.5em;"><?php echo $footer; ?>
 	</div>
+
+	<?php
+	if (isset($_POST["download"])) {
+		$dir = 'data';
+		$archive = time() . '-download.zip';
+		$zip = new ZipArchive;
+		$zip->open($archive, ZipArchive::CREATE);
+		$files = scandir($dir);
+		unset($files[0], $files[1]);
+		foreach ($files as $file) {
+			$zip->addFile($dir . '/' . $file);
+		}
+		$zip->close();
+		header($_SERVER['SERVER_PROTOCOL'] . ' 200 OK');
+		header('Content-Type: application/zip');
+		header("Content-Transfer-Encoding: Binary");
+		header('Content-disposition: attachment; filename=' . $archive);
+		header('Content-Length: ' . filesize($archive));
+		while (ob_get_level()) {
+			ob_end_clean();
+		}
+		readfile($archive);
+		unlink($archive);
+		ob_start();
+	}
+	?>
+
+	<div class="text-center">
+		<p style="margin-right: 0.5em;"><?php echo $footer; ?>
 </body>
+</div>
 
 </html>

@@ -1,6 +1,6 @@
 # Tenki
 
-Tenki a simple PHP application to log current weather conditions and notes.
+Tenki a simple PHP application for logging current weather conditions, notes, and waypoints.
 
 The accompanying shell script can be used to read the date of a specified photo then find a matching text file, and write its contents into the _Comment_ field of the photo.
 

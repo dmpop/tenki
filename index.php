@@ -106,7 +106,7 @@ require_once('protect.php');
 						} else {
 							$lat = $_COOKIE['posLat'];
 							$lon = $_COOKIE['posLon'];
-							$request = "https://api.openweathermap.org/data/2.5/weather?lat=" . $lat . "&lon=" . $lon . "&appid=" . $api_key . "&units=metric&cnt=7&lang=en&units=metric&cnt=7";
+							$request = "https://api.openweathermap.org/data/2.5/weather?lat=" . $lat . "&lon=" . $lon . "&appid=" . $api_key . "&units=metric&cnt=7&lang=en";
 							$response = file_get_contents($request);
 							$data = json_decode($response, true);
 							$city = $data['name'];

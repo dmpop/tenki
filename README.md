@@ -6,7 +6,7 @@ The accompanying shell script can be used to read the date of a specified photo 
 
 The [Linux Photography](https://gumroad.com/l/linux-photography) book provides detailed information on using Mejiro. Get your copy at [Google Play Store](https://play.google.com/store/books/details/Dmitri_Popov_Linux_Photography?id=cO70CwAAQBAJ) or [Gumroad](https://gumroad.com/l/linux-photography).
 
-<img src="https://i.imgur.com/qP9Z9mQ.jpg" title="Linux Photography book" width="200"/>
+<img src="https://tokyoma.de/bookcovers/linux-photography.jpg" title="Linux Photography book" width="200"/>
 
 ## Author
 

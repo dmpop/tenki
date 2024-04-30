@@ -10,21 +10,19 @@ Table of Contents:
 
 /* 1. Theme Settings ––––––––––––––––––––-–––––––––––––– */
 
-/* @import url('https://fonts.googleapis.com/css?family=Barlow:300,400'); */
-
 @font-face {
-	font-family: 'Barlow';
+	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 400;
-	src: url('../font/Barlow-Regular.woff2') format('woff2');
+	src: url('../InterDisplay-Regular.woff2') format('woff2');
 }
 
 :root, html[data-theme='light'] {
 	--rem: 12pt;
 	--width: 50rem;
 	--navpos: absolute;  /* fixed | absolute */
-	--font-p: 1em/1.7 'Barlow', Helvetica, sans-serif;
-	--font-h: .9em/1.5 'Barlow', Helvetica, sans-serif;
+	--font-p: 1em/1.7 'Inter', Helvetica, sans-serif;
+	--font-h: .9em/1.5 'Inter', Helvetica, sans-serif;
 	--font-c: .9em/1.4 monospace;
 	--border: 1px solid var(--cmed);
 	--ornament: "‹‹‹ ›››";

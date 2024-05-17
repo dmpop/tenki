@@ -106,13 +106,17 @@ require_once('protect.php');
 						} else {
 							$lat = $_COOKIE['posLat'];
 							$lon = $_COOKIE['posLon'];
-							$request = "https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$lon&current=temperature_2m,wind_speed_10m&timezone=$tz";
-							$response = file_get_contents($request);
-							$data = json_decode($response, true);
-							$temp = $data['current']['temperature_2m'];
-							$wind = round(((5 / 18) * $data['current']['wind_speed_10m']), 1);
+							$reverse_geocode_request = file_get_contents("https://photon.komoot.io/reverse?lon=$lon&lat=$lat");
+							$geo_data = json_decode($reverse_geocode_request, true);
+							!empty($geo_data['features']['0']['properties']['street']) ? $street = $geo_data['features']['0']['properties']['street'] . ", " : $street = NULL;
+							$city = $geo_data['features']['0']['properties']['city'];
+							$countrycode = $geo_data['features']['0']['properties']['countrycode'];
+							$weather_request = file_get_contents("https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$lon&current=temperature_2m,wind_speed_10m&timezone=$tz");
+							$weather_data = json_decode($weather_request, true);
+							$temp = $weather_data['current']['temperature_2m'];
+							$wind = round(((5 / 18) * $weather_data['current']['wind_speed_10m']), 1);
 							$f = fopen("data/" . $date . ".txt", "a");
-							fwrite($f,  $temp . "°C, " . $wind . "m/s @ " .$dt->format('H:i'). ". " . $note . "\n");
+							fwrite($f, $street . $city . ", " . $countrycode . ": " .  $temp . "°C, " . $wind . "m/s @ " . $dt->format('H:i') . ". " . $note . "\n");
 							fclose($f);
 						}
 						echo "<script>";

@@ -106,16 +106,13 @@ require_once('protect.php');
 						} else {
 							$lat = $_COOKIE['posLat'];
 							$lon = $_COOKIE['posLon'];
-							$request = "https://api.openweathermap.org/data/2.5/weather?lat=" . $lat . "&lon=" . $lon . "&appid=" . $api_key . "&units=metric&cnt=7&lang=en";
+							$request = "https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$lon&current=temperature_2m,wind_speed_10m&timezone=$tz";
 							$response = file_get_contents($request);
 							$data = json_decode($response, true);
-							$city = $data['name'];
-							$country = $data['sys']['country'];
-							$temp = $data['main']['temp'];
-							$weather = $data['weather'][0]['description'];
-							$wind = $data['wind']['speed'];
+							$temp = $data['current']['temperature_2m'];
+							$wind = round(((5 / 18) * $data['current']['wind_speed_10m']), 1);
 							$f = fopen("data/" . $date . ".txt", "a");
-							fwrite($f, $city . " (" . $country . "), " . ucfirst(strtolower($weather)) . ", " . $temp . "°C, " . $wind . "m/s. " . $note . "\n");
+							fwrite($f,  $temp . "°C, " . $wind . "m/s @ " .$dt->format('H:i'). ". " . $note . "\n");
 							fclose($f);
 						}
 						echo "<script>";

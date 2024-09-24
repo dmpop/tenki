@@ -106,12 +106,24 @@ require_once('protect.php');
 						} else {
 							$lat = $_COOKIE['posLat'];
 							$lon = $_COOKIE['posLon'];
-							$reverse_geocode_request = file_get_contents("https://photon.komoot.io/reverse?lon=$lon&lat=$lat");
+
+							$ch = curl_init();
+							curl_setopt($ch, CURLOPT_URL, "https://photon.komoot.io/reverse?lon=$lon&lat=$lat");
+							curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+							$reverse_geocode_request = curl_exec($ch);
+							curl_close($ch);
+
 							$geo_data = json_decode($reverse_geocode_request, true);
 							!empty($geo_data['features']['0']['properties']['street']) ? $street = $geo_data['features']['0']['properties']['street'] . ", " : $street = NULL;
 							$city = $geo_data['features']['0']['properties']['city'];
 							$countrycode = $geo_data['features']['0']['properties']['countrycode'];
-							$weather_request = file_get_contents("https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$lon&current=temperature_2m,wind_speed_10m&timezone=$tz");
+
+							$ch = curl_init();
+							curl_setopt($ch, CURLOPT_URL, "https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$lon&current=temperature_2m,wind_speed_10m&timezone=$tz");
+							curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+							$weather_request = curl_exec($ch);
+							curl_close($ch);
+
 							$weather_data = json_decode($weather_request, true);
 							$temp = $weather_data['current']['temperature_2m'];
 							$wind = round(((5 / 18) * $weather_data['current']['wind_speed_10m']), 1);

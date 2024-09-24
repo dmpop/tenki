@@ -2,13 +2,13 @@
 // Title
 $title = "Tenki";
 // Theme (light dark, sepia)
-$theme = "dark";
+$theme = "light";
 // Number of entries to display
 $inum = 7;
 //Enable password protection
 $protect = true;
 // Password
-$password = 'monkey';
+$password = 'secret';
 // Timezone
 $tz = 'Europe/Berlin';
 // Footer

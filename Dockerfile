@@ -1,10 +1,10 @@
-FROM docker.io/debian
+FROM docker.io/alpine:latest
 LABEL maintainer="dmpop@cameracode.coffee"
-LABEL version="0.1"
+LABEL version="1.0"
 LABEL description="Tenki container image"
-RUN apt update
-RUN apt install -y php-cli php-json php-curl
+RUN apk update
+RUN apk add php-cli php-json php-curl php-session
 COPY . /usr/src/tenki
 WORKDIR /usr/src/tenki
-EXPOSE 8080
-CMD [ "php", "-S", "0.0.0.0:8080" ]
+EXPOSE 8000
+CMD [ "php", "-S", "0.0.0.0:8000" ]
